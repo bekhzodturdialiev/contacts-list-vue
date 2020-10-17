@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="wrapper">
+    <div class="wrapper d-flex">
       <Menu />
       <router-view />
     </div>

@@ -10,7 +10,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fa fa-users"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">
+        <div class="sidebar-brand-text mx-3 my-3">
           <span>Contacts</span>
         </div>
       </a>
