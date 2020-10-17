@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-primary p-0"
+    class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-primary p-0 col-6 col-md-3 col-lg-2 vh-100"
   >
     <div class="container-fluid d-flex flex-column p-0">
       <a
@@ -51,16 +51,4 @@
 export default {};
 </script>
 
-<style>
-@media (min-width: 768px) {
-  @media (min-width: 768px) {
-    .sidebar {
-      width: 14rem !important;
-    }
-  }
-}
-.sidebar {
-  width: 6.5rem;
-  min-height: 100vh;
-}
-</style>
+<style></style>
