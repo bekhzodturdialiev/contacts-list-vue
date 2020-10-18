@@ -60,9 +60,25 @@
                 </tbody>
                 <tbody></tbody>
               </table>
-              <p class="text-primary text-right mt-4">
-                <a href="#" @click="goBack">Go Back</a>
-              </p>
+              <div class="d-flex justify-content-between mt-4">
+                <div class="d-flex">
+                  <p>
+                    <a href="#" class="">
+                      <i class="fas fa-user-edit ml-3"></i>
+                      <span class="ml-3">Edit</span>
+                    </a>
+                  </p>
+                  <p>
+                    <a href="#" class="">
+                      <i class="fas fa-user-minus ml-3"></i>
+                      <span class="ml-3">Delete</span>
+                    </a>
+                  </p>
+                </div>
+                <p class="text-primary">
+                  <a href="#" @click="goBack">Go Back</a>
+                </p>
+              </div>
             </div>
           </div>
         </div>

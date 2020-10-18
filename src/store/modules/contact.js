@@ -5,7 +5,7 @@ export const namespaced = true;
 export const state = {
   contacts: [],
   contactsTotal: 0,
-  contact: {},
+  contact: [],
   perPage: 10
 };
 export const mutations = {

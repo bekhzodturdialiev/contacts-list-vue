@@ -11,7 +11,12 @@
           <i class="fa fa-users"></i>
         </div>
         <div class="sidebar-brand-text mx-3 my-3">
-          <span>Contacts</span>
+          <router-link
+            :to="{ name: 'ContactList' }"
+            class="nav-link text-light active"
+          >
+            <span>Contacts</span>
+          </router-link>
         </div>
       </a>
       <ul
@@ -19,28 +24,16 @@
         class="nav navbar-nav text-light align-self-start"
       >
         <li class="nav-item">
-          <a href="#" class="nav-link active">
+          <router-link :to="{ name: 'ContactList' }" class="nav-link">
             <i class="fas fa-user ml-3"></i>
             <span class="ml-3">Contact List</span>
-          </a>
+          </router-link>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <router-link :to="{ name: 'ContactCreate' }" class="nav-link">
             <i class="fas fa-user-plus ml-3"></i>
             <span class="ml-3">Create</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="fas fa-user-edit ml-3"></i>
-            <span class="ml-3">Edit</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="fas fa-user-minus ml-3"></i>
-            <span class="ml-3">Delete</span>
-          </a>
+          </router-link>
         </li>
       </ul>
     </div>
