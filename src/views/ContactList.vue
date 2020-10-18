@@ -41,6 +41,8 @@
                       class="form-control form-control-sm"
                       aria-controls="dataTable"
                       placeholder="Search"
+                      v-model="query"
+                      @input="processSearch"
                   /></label>
                 </div>
               </div>
@@ -149,6 +151,11 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      query: ""
+    };
+  },
   components: {
     ContactCard
   },
@@ -163,6 +170,12 @@ export default {
       }
       store.dispatch("contact/fetchContacts", {
         page: 1
+      });
+    },
+    processSearch() {
+      store.dispatch("contact/findContacts", {
+        page: 1,
+        q: this.query
       });
     }
   },

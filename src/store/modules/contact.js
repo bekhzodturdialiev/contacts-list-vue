@@ -49,6 +49,17 @@ export const actions = {
         throw error;
       });
   },
+  findContacts: function({ commit, state }, { page, q }) {
+    return ContactService.getContactsByQuery(state.perPage, page, q)
+      .then(response => {
+        commit("SET_CONTACTS", response.data);
+        commit("SET_CONTACTS_TOTAL", response.headers["x-total-count"]);
+      })
+      .catch(error => {
+        console.log("There was a problem fetching contacts: " + error.message);
+        throw error;
+      });
+  },
   fetchContact: function({ commit, getters }, id) {
     var contact = getters.getContactById(id);
     if (contact) {

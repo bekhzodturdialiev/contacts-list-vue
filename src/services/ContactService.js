@@ -13,6 +13,11 @@ export default {
   getContacts: function(perPage, page) {
     return apiClient.get("/contacts?_limit=" + perPage + "&_page=" + page);
   },
+  getContactsByQuery: function(perPage, page, q) {
+    return apiClient.get(
+      "/contacts?_limit=" + perPage + "&_page=" + page + "&q=" + q
+    );
+  },
   getContactById: function(id) {
     return apiClient.get("/contacts/" + id);
   },
