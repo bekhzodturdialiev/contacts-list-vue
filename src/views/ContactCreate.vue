@@ -188,7 +188,7 @@ export default {
     removeAddressInput(index) {
       this.addresses.splice(index, 1);
     },
-    createContactObject: function() {
+    createFreshContactObject: function() {
       const id = Math.floor(Math.random() * 100000000);
       return {
         id: id,
@@ -198,7 +198,7 @@ export default {
         email: []
       };
     },
-    editContact: function() {
+    createContact: function() {
       this.contact.name = this.name;
       this.contact.phone = this.phones;
       this.contact.email = this.emails;
