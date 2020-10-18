@@ -150,6 +150,8 @@
 </template>
 
 <script>
+import validateMixins from "../mixins/validateMixin";
+
 export default {
   data() {
     return {
@@ -165,6 +167,7 @@ export default {
       contact: this.createFreshContactObject()
     };
   },
+  mixins: [validateMixins],
   methods: {
     addPhoneInput() {
       this.phones.push({ id: this.phones[this.phones.length - 1].id + 1 });
@@ -199,50 +202,20 @@ export default {
         email: []
       };
     },
-    checkForm: function() {
-      this.errors = [];
-
-      if (!this.contact.name) {
-        this.errors.push("Name required.");
-      }
-
-      this.contact.phone.forEach(element => {
-        if (!element.name) {
-          this.errors.push(`Phone number: ${element.id} required.`);
-        }
-      });
-
-      this.contact.email.forEach(element => {
-        if (!element.name) {
-          this.errors.push(`Email: ${element.id} required.`);
-        } else if (!this.validEmail(element.name)) {
-          this.errors.push(`Valid email ${element.id} required.`);
-        }
-      });
-
-      this.contact.phone.forEach(element => {
-        if (!element.address) {
-          this.errors.push(`Address: ${element.id} required.`);
-        }
-      });
-
-      if (!this.errors.length) {
-        return true;
-      }
-
-      return false;
-    },
-    validEmail: function(email) {
-      var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-      return re.test(email);
-    },
     createContact: function() {
       this.contact.name = this.name;
       this.contact.phone = this.phones;
       this.contact.email = this.emails;
       this.contact.address = this.addresses;
 
-      if (!this.checkForm()) {
+      if (
+        !this.checkForm(
+          this.contact.name,
+          this.contact.phone,
+          this.contact.email,
+          this.contact.address
+        )
+      ) {
         const notification = {
           type: "danger",
           message: this.errors.join("; ")

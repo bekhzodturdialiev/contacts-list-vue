@@ -159,6 +159,8 @@
 </template>
 
 <script>
+import validateMixins from "../mixins/validateMixin";
+
 export default {
   props: {
     oldContact: {
@@ -166,6 +168,7 @@ export default {
       required: true
     }
   },
+  mixins: [validateMixins],
   data() {
     return {
       phoneInputAdded: false,
@@ -206,15 +209,21 @@ export default {
     },
     createContact: function() {
       if (
-        this.oldContact.id === "" ||
-        this.oldContact.name === "" ||
-        this.oldContact.phone === "" ||
-        this.oldContact.email === "" ||
-        this.oldContact.address === ""
+        !this.checkForm(
+          this.oldContact.name,
+          this.oldContact.phone,
+          this.oldContact.email,
+          this.oldContact.address
+        )
       ) {
-        console.log("One of the required fields is empty!");
+        const notification = {
+          type: "danger",
+          message: this.errors.join("; ")
+        };
+        this.$store.dispatch("notification/add", notification, { root: true });
         return;
       }
+
       this.$store
         .dispatch("contact/editContact", this.oldContact)
         .then(() => {

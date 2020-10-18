@@ -5,12 +5,12 @@ export const namespaced = true;
 export const state = {
   contacts: [],
   contactsTotal: 0,
-  contact: Array(),
+  contact: {},
   perPage: 10
 };
 export const mutations = {
   ADD_CONTACT(state, contact) {
-    state.contact.push(contact);
+    state.contacts.push(contact);
   },
   SET_CONTACTS(state, contacts) {
     state.contacts = contacts;
