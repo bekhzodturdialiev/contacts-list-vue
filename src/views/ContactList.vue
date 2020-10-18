@@ -60,19 +60,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>
-                      <img
-                        class="rounded-circle mr-2"
-                        width="30"
-                        height="30"
-                        src="../assets/images/avatar.png"
-                      />Airi Satou
-                    </td>
-                    <td>+998977777777</td>
-                    <td>Tashkent</td>
-                    <td>some-email@example.com</td>
-                  </tr>
+                  <ContactCard
+                    v-for="contact in contact.contacts"
+                    :key="contact.id"
+                    :contact="contact"
+                  />
                 </tbody>
                 <tfoot>
                   <tr>
@@ -92,7 +84,8 @@
                   role="status"
                   aria-live="polite"
                 >
-                  Showing 1 to 10 of 27
+                  Showing {{ contactStartNumber }} to {{ contactEndNumber }} of
+                  {{ contactsTotal }}
                 </p>
               </div>
               <div class="col-md-6">
@@ -131,7 +124,60 @@
 </template>
 
 <script>
+import store from "@/store";
+import ContactCard from "@/components/ContactCard";
+import { mapState } from "vuex";
+
 export default {
-  name: "ContactList"
+  name: "ContactList",
+  props: {
+    page: {
+      type: Number,
+      required: true
+    }
+  },
+  components: {
+    ContactCard
+  },
+  beforeRouteEnter(routeTo, routeFrom, next) {
+    console.log(routeTo);
+    console.log(routeFrom);
+    const currentPage = parseInt(routeTo.query.page) || 1;
+    store
+      .dispatch("contact/fetchContacts", {
+        page: currentPage
+      })
+      .then(() => {
+        routeTo.params.page = currentPage;
+        next();
+      });
+  },
+  beforeRouteUpdate(routeTo, routeFrom, next) {
+    console.log(routeTo);
+    const currentPage = parseInt(routeTo.query.page) || 1;
+    store
+      .dispatch("contact/fetchContacts", {
+        page: currentPage
+      })
+      .then(() => {
+        routeTo.params.page = currentPage;
+        next();
+      });
+  },
+  computed: {
+    hasNextPage() {
+      return this.contactsTotal > this.page * this.contact.perPage;
+    },
+    ...mapState(["contact"]),
+    contactsTotal() {
+      return this.contact.contactsTotal;
+    },
+    contactStartNumber() {
+      return this.contact.perPage * this.page - this.contact.perPage + 1;
+    },
+    contactEndNumber() {
+      return this.contactsTotal % (this.contact.perPage * this.page);
+    }
+  }
 };
 </script>
