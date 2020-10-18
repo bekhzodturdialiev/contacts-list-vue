@@ -12,7 +12,7 @@
       "address": [
         {
           "address_id": 12345621,
-          "name": "Tashkent"
+          "name": "Tokio"
         }
       ],
       "email": [
@@ -115,8 +115,12 @@
       "name": "Wang Irina",
       "phone": [
         {
-          "phone_id": 12345612,
+          "phone_id": 1,
           "number": "+998977777777"
+        },
+        {
+          "phone_id": 2,
+          "number": "+564654654653"
         }
       ],
       "address": [
@@ -129,72 +133,40 @@
         {
           "email_id": 12345631,
           "name": "some-email@example.com"
+        },
+        {
+          "id": null,
+          "name": "new-email@example.com"
         }
       ]
     },
     {
       "id": 123425,
-      "name": "Suraphel N.",
+      "name": "Suraphel",
       "phone": [
         {
-          "phone_id": 12345612,
-          "number": "+456654654456"
+          "phone_id": 1,
+          "number": "+314565478998"
+        },
+        {
+          "id": null,
+          "number": "+456465465465"
+        },
+        {
+          "id": null,
+          "number": "+4654654354654"
+        }
+      ],
+      "email": [
+        {
+          "id": 1,
+          "name": "suraphel@gmail.com"
         }
       ],
       "address": [
         {
-          "address_id": 12345621,
+          "id": 1,
           "name": "Asmara"
-        }
-      ],
-      "email": [
-        {
-          "email_id": 12345631,
-          "name": "some-email@example.com"
-        }
-      ]
-    },
-    {
-      "id": 123426,
-      "name": "Khalid Cheema",
-      "phone": [
-        {
-          "phone_id": 12345612,
-          "number": "+3393353055"
-        }
-      ],
-      "address": [
-        {
-          "address_id": 12345621,
-          "name": "Islamabad"
-        }
-      ],
-      "email": [
-        {
-          "email_id": 12345631,
-          "name": "some-email@example.com"
-        }
-      ]
-    },
-    {
-      "id": 123427,
-      "name": "Valetta Jesslyn",
-      "phone": [
-        {
-          "phone_id": 12345712,
-          "number": "+83112345678"
-        }
-      ],
-      "address": [
-        {
-          "address_id": 12345721,
-          "name": "Jakarta"
-        }
-      ],
-      "email": [
-        {
-          "email_id": 12345731,
-          "name": "some-email@example.com"
         }
       ]
     }

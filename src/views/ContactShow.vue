@@ -63,10 +63,16 @@
               <div class="d-flex justify-content-between mt-4">
                 <div class="d-flex">
                   <p>
-                    <a href="#" class="">
+                    <router-link
+                      :to="{
+                        name: 'ContactEdit',
+                        params: { id: contact.id, oldContact: contact }
+                      }"
+                      class=""
+                    >
                       <i class="fas fa-user-edit ml-3"></i>
                       <span class="ml-3">Edit</span>
-                    </a>
+                    </router-link>
                   </p>
                   <p>
                     <a

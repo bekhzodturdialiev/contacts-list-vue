@@ -26,5 +26,8 @@ export default {
   },
   deleteContact(id) {
     return apiClient.delete("/contacts/" + id);
+  },
+  putContact(contact) {
+    return apiClient.put("/contacts/" + contact.id, contact);
   }
 };

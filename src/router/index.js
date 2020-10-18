@@ -35,7 +35,7 @@ const routes = [
     component: ContactCreate
   },
   {
-    path: "/create",
+    path: "/contact/:id",
     name: "ContactEdit",
     component: ContactEdit,
     props: true

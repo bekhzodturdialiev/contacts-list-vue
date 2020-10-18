@@ -78,13 +78,22 @@ export const actions = {
     }
   },
   removeContact: function({ dispatch }, id) {
-    console.log(id);
     return ContactService.deleteContact(id)
       .then(() => {
         dispatch("fetchContacts", 1);
       })
       .catch(error => {
         console.log("There was a problem deleting contact: " + error.message);
+        throw error;
+      });
+  },
+  editContact: function({ state }, contact) {
+    return ContactService.putContact(contact)
+      .then(() => {
+        console.log(state.contact);
+      })
+      .catch(error => {
+        console.log("There was a problem editing contact: " + error.message);
         throw error;
       });
   },
