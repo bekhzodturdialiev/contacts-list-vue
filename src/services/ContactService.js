@@ -2,7 +2,7 @@ import axios from "axios";
 import nProgress from "nprogress";
 
 const apiClient = axios.create({
-  baseURL: "https://my-json-server.typicode.com/kiral439/alif-contacts-db",
+  baseURL: "https://alif-contacts-db.herokuapp.com",
   withCredentials: false,
   headers: {
     Accept: "application/json",

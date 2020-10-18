@@ -347,28 +347,6 @@
       ]
     },
     {
-      "id": 72712162,
-      "name": "Umaribova Nariba",
-      "phone": [
-        {
-          "id": 1,
-          "number": "+7778943232463"
-        }
-      ],
-      "address": [
-        {
-          "id": 1,
-          "name": "Tula"
-        }
-      ],
-      "email": [
-        {
-          "id": 1,
-          "name": "marina@gmail.com"
-        }
-      ]
-    },
-    {
       "id": 59438588,
       "name": "Next",
       "phone": [
