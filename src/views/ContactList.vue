@@ -12,7 +12,7 @@
           </div>
           <div class="card-body">
             <div class="row">
-              <div class="col-md-6 text-nowrap">
+              <div class="col-6 col-md-6 text-nowrap d-none d-md-block">
                 <div
                   id="dataTable_length"
                   class="dataTables_length"
@@ -30,7 +30,7 @@
                   >
                 </div>
               </div>
-              <div class="col-md-6">
+              <div class="col-6 col-md-6">
                 <div
                   class="text-md-right dataTables_filter"
                   id="dataTable_filter"
@@ -226,7 +226,9 @@ export default {
       return this.contact.perPage * this.page - this.contact.perPage + 1;
     },
     contactEndNumber() {
-      return this.contactsTotal % (this.contact.perPage * this.page);
+      return this.contact.perPage * this.page > this.contactsTotal
+        ? this.contactsTotal
+        : this.contact.perPage * this.page;
     },
     lastPage() {
       return Math.ceil(this.contactsTotal / this.contact.perPage);
