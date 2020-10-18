@@ -21,7 +21,8 @@
                   <label
                     >Show&nbsp;<select
                       class="form-control form-control-sm custom-select custom-select-sm"
-                      ><option value="10" selected="">10</option
+                      @change="updatePerPage($event)"
+                      ><option value="10" selected>10</option
                       ><option value="25">25</option
                       ><option value="50">50</option
                       ><option value="100">100</option></select
@@ -126,7 +127,19 @@
 <script>
 import store from "@/store";
 import ContactCard from "@/components/ContactCard";
-import { mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
+
+const fetchRoute = (routeTo, routeFrom, next) => {
+  const currentPage = parseInt(routeTo.query.page) || 1;
+  store
+    .dispatch("contact/fetchContacts", {
+      page: currentPage
+    })
+    .then(() => {
+      routeTo.params.page = currentPage;
+      next();
+    });
+};
 
 export default {
   name: "ContactList",
@@ -139,36 +152,32 @@ export default {
   components: {
     ContactCard
   },
-  beforeRouteEnter(routeTo, routeFrom, next) {
-    console.log(routeTo);
-    console.log(routeFrom);
-    const currentPage = parseInt(routeTo.query.page) || 1;
-    store
-      .dispatch("contact/fetchContacts", {
-        page: currentPage
-      })
-      .then(() => {
-        routeTo.params.page = currentPage;
-        next();
+  methods: {
+    updatePerPage(event) {
+      const updatePerPageResult = store.dispatch(
+        "contact/updatePerPage",
+        event.target.value
+      );
+      if (!updatePerPageResult) {
+        return;
+      }
+      store.dispatch("contact/fetchContacts", {
+        page: 1
       });
+    }
+  },
+  beforeRouteEnter(routeTo, routeFrom, next) {
+    fetchRoute(routeTo, routeFrom, next);
   },
   beforeRouteUpdate(routeTo, routeFrom, next) {
-    console.log(routeTo);
-    const currentPage = parseInt(routeTo.query.page) || 1;
-    store
-      .dispatch("contact/fetchContacts", {
-        page: currentPage
-      })
-      .then(() => {
-        routeTo.params.page = currentPage;
-        next();
-      });
+    fetchRoute(routeTo, routeFrom, next);
   },
   computed: {
     hasNextPage() {
       return this.contactsTotal > this.page * this.contact.perPage;
     },
     ...mapState(["contact"]),
+    ...mapGetters(["contact/getPerPage"]),
     contactsTotal() {
       return this.contact.contactsTotal;
     },

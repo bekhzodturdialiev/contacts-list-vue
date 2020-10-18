@@ -20,6 +20,9 @@ export const mutations = {
   },
   SET_CONTACT(state, contact) {
     state.contact = contact;
+  },
+  SET_PER_PAGE(state, perPage) {
+    state.perPage = perPage;
   }
 };
 export const actions = {
@@ -62,11 +65,24 @@ export const actions = {
           throw error;
         });
     }
+  },
+  updatePerPage: function({ commit, getters }, perPage) {
+    if (perPage === getters.getPerPage) {
+      return false;
+    }
+    commit("SET_PER_PAGE", perPage);
+    return true;
   }
 };
 
 export const getters = {
   getContactById: state => id => {
     return state.contacts.find(contact => contact.id === id);
+  },
+  getPerPage: state => {
+    return state.perPage;
+  },
+  getSomething: () => {
+    return 5;
   }
 };

@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="navbar navbar-dark align-items-start sidebar sidebar-dark accordion bg-primary p-0 col-6 col-md-3 col-lg-2 vh-100"
+    class="navbar navbar-dark align-items-start sidebar sidebar-dark bg-primary p-0 col-6 col-md-3 col-lg-2 min-vh-100"
   >
     <div class="container-fluid d-flex flex-column p-0">
       <a
