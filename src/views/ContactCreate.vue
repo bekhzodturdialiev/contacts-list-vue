@@ -160,6 +160,7 @@ export default {
       phoneInputAdded: false,
       emailInputAdded: false,
       addressInputAdded: false,
+      errors: [],
 
       contact: this.createFreshContactObject()
     };
@@ -198,13 +199,58 @@ export default {
         email: []
       };
     },
+    checkForm: function() {
+      this.errors = [];
+
+      if (!this.contact.name) {
+        this.errors.push("Name required.");
+      }
+
+      this.contact.phone.forEach(element => {
+        if (!element.name) {
+          this.errors.push(`Phone number: ${element.id} required.`);
+        }
+      });
+
+      this.contact.email.forEach(element => {
+        if (!element.name) {
+          this.errors.push(`Email: ${element.id} required.`);
+        } else if (!this.validEmail(element.name)) {
+          this.errors.push(`Valid email ${element.id} required.`);
+        }
+      });
+
+      this.contact.phone.forEach(element => {
+        if (!element.address) {
+          this.errors.push(`Address: ${element.id} required.`);
+        }
+      });
+
+      if (!this.errors.length) {
+        return true;
+      }
+
+      return false;
+    },
+    validEmail: function(email) {
+      var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+      return re.test(email);
+    },
     createContact: function() {
       this.contact.name = this.name;
       this.contact.phone = this.phones;
       this.contact.email = this.emails;
       this.contact.address = this.addresses;
 
-      console.log(this.contact);
+      if (!this.checkForm()) {
+        const notification = {
+          type: "danger",
+          message: this.errors.join("; ")
+        };
+        this.$store.dispatch("notification/add", notification, { root: true });
+        return;
+      }
+
       this.$store
         .dispatch("contact/createContact", this.contact)
         .then(() => {

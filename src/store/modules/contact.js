@@ -5,7 +5,7 @@ export const namespaced = true;
 export const state = {
   contacts: [],
   contactsTotal: 0,
-  contact: [],
+  contact: Array(),
   perPage: 10
 };
 export const mutations = {
@@ -26,41 +26,56 @@ export const mutations = {
   }
 };
 export const actions = {
-  createContact({ commit }, contact) {
+  createContact({ commit, dispatch }, contact) {
     return ContactService.postContact(contact)
       .then(() => {
         commit("ADD_CONTACT", contact);
+        const notification = {
+          type: "success",
+          message: "The contact has been created!"
+        };
+        dispatch("notification/add", notification, { root: true });
       })
       .catch(error => {
-        console.log(
-          "There was a problem creating your contact: " + error.message
-        );
+        const notification = {
+          type: "danger",
+          message: "There was a problem creating your contact: " + error.message
+        };
+        dispatch("notification/add", notification, { root: true });
         throw error;
       });
   },
-  fetchContacts: function({ commit, state }, { page }) {
+  fetchContacts: function({ commit, state, dispatch }, { page }) {
     return ContactService.getContacts(state.perPage, page)
       .then(response => {
         commit("SET_CONTACTS", response.data);
         commit("SET_CONTACTS_TOTAL", response.headers["x-total-count"]);
       })
       .catch(error => {
-        console.log("There was a problem fetching contacts: " + error.message);
+        const notification = {
+          type: "danger",
+          message: "There was a problem fetching contacts: " + error.message
+        };
+        dispatch("notification/add", notification, { root: true });
         throw error;
       });
   },
-  findContacts: function({ commit, state }, { page, q }) {
+  findContacts: function({ commit, state, dispatch }, { page, q }) {
     return ContactService.getContactsByQuery(state.perPage, page, q)
       .then(response => {
         commit("SET_CONTACTS", response.data);
         commit("SET_CONTACTS_TOTAL", response.headers["x-total-count"]);
       })
       .catch(error => {
-        console.log("There was a problem fetching contacts: " + error.message);
+        const notification = {
+          type: "danger",
+          message: "There was a problem finding contacts: " + error.message
+        };
+        dispatch("notification/add", notification, { root: true });
         throw error;
       });
   },
-  fetchContact: function({ commit, getters }, id) {
+  fetchContact: function({ commit, getters, dispatch }, id) {
     var contact = getters.getContactById(id);
     if (contact) {
       commit("SET_CONTACT", contact);
@@ -72,7 +87,11 @@ export const actions = {
           return response.data;
         })
         .catch(error => {
-          console.log("There was a problem fetching contact: " + error.message);
+          const notification = {
+            type: "danger",
+            message: "There was a problem fetching contact: " + error.message
+          };
+          dispatch("notification/add", notification, { root: true });
           throw error;
         });
     }
@@ -83,17 +102,29 @@ export const actions = {
         dispatch("fetchContacts", 1);
       })
       .catch(error => {
-        console.log("There was a problem deleting contact: " + error.message);
+        const notification = {
+          type: "danger",
+          message: "There was a problem deleting contact: " + error.message
+        };
+        dispatch("notification/add", notification, { root: true });
         throw error;
       });
   },
-  editContact: function({ state }, contact) {
+  editContact: function({ dispatch }, contact) {
     return ContactService.putContact(contact)
       .then(() => {
-        console.log(state.contact);
+        const notification = {
+          type: "success",
+          message: "The contact successfully edited: "
+        };
+        dispatch("notification/add", notification, { root: true });
       })
       .catch(error => {
-        console.log("There was a problem editing contact: " + error.message);
+        const notification = {
+          type: "danger",
+          message: "There was a problem editing contact: " + error.message
+        };
+        dispatch("notification/add", notification, { root: true });
         throw error;
       });
   },
