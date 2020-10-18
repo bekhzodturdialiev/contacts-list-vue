@@ -69,7 +69,12 @@
                     </a>
                   </p>
                   <p>
-                    <a href="#" class="">
+                    <a
+                      href="#"
+                      @click="removeContact(contact.id)"
+                      class=""
+                      id="removeContact"
+                    >
                       <i class="fas fa-user-minus ml-3"></i>
                       <span class="ml-3">Delete</span>
                     </a>
@@ -89,9 +94,6 @@
 
 <script>
 export default {
-  created() {
-    console.log(this.$router.history);
-  },
   props: {
     contact: {
       type: Object,
@@ -106,6 +108,19 @@ export default {
   methods: {
     goBack() {
       this.$router.go(-1);
+    },
+    removeContact: function(id) {
+      if (confirm("Do you really want to delete this contact? ")) {
+        this.$store
+          .dispatch("contact/removeContact", id)
+          .then(() => {
+            this.$router.push({
+              name: "ContactList",
+              params: { page: 1 }
+            });
+          })
+          .catch(() => {});
+      }
     }
   }
 };

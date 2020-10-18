@@ -77,6 +77,17 @@ export const actions = {
         });
     }
   },
+  removeContact: function({ dispatch }, id) {
+    console.log(id);
+    return ContactService.deleteContact(id)
+      .then(() => {
+        dispatch("fetchContacts", 1);
+      })
+      .catch(error => {
+        console.log("There was a problem deleting contact: " + error.message);
+        throw error;
+      });
+  },
   updatePerPage: function({ commit, getters }, perPage) {
     if (perPage === getters.getPerPage) {
       return false;
@@ -92,8 +103,5 @@ export const getters = {
   },
   getPerPage: state => {
     return state.perPage;
-  },
-  getSomething: () => {
-    return 5;
   }
 };

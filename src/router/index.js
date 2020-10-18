@@ -4,6 +4,7 @@ import store from "@/store";
 import ContactList from "../views/ContactList.vue";
 import ContactShow from "../views/ContactShow.vue";
 import ContactCreate from "../views/ContactCreate.vue";
+import ContactEdit from "../views/ContactEdit.vue";
 
 Vue.use(VueRouter);
 
@@ -32,6 +33,12 @@ const routes = [
     path: "/create",
     name: "ContactCreate",
     component: ContactCreate
+  },
+  {
+    path: "/create",
+    name: "ContactEdit",
+    component: ContactEdit,
+    props: true
   }
 ];
 
