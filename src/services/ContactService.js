@@ -2,7 +2,7 @@ import axios from "axios";
 import nProgress from "nprogress";
 
 const apiClient = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://my-json-server.typicode.com/kiral439/alif-contacts-db",
   withCredentials: false,
   headers: {
     Accept: "application/json",
