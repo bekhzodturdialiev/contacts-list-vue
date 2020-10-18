@@ -1,6 +1,6 @@
 <template>
   <div
-    class="d-flex flex-column col-12 col-md-9 col-lg-10"
+    class="d-flex flex-column col-12 col-md-9 col-lg-8 col-xl-9"
     id="content-wrapper"
   >
     <div id="content">
