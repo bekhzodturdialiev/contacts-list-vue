@@ -1,0 +1,48 @@
+{
+  "contacts":[
+    {
+      "id": 123456,
+      "name": "Airi Satou",
+      "phone":[
+        {
+          "phone_id":12345612,
+          "number":"+998977777777"
+        }
+      ],
+      "address": [
+        {
+          "address_id":12345621,
+          "name":"Tashkent"
+        }
+      ],
+      "email":[
+        {
+          "email_id":12345631,
+          "name": "some-email@example.com"
+        }
+      ]
+    },
+    {
+      "id": 123457,
+      "name": "Valetta Jesslyn",
+      "phone":[
+        {
+          "phone_id":12345712,
+          "number":"+83112345678"
+        }
+      ],
+      "address": [
+        {
+          "address_id":12345721,
+          "name":"Jakarta"
+        }
+      ],
+      "email":[
+        {
+          "email_id":12345731,
+          "name": "some-email@example.com"
+        }
+      ]
+    }
+  ]
+}
