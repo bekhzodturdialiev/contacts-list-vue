@@ -7,8 +7,13 @@
       <div class="container-fluid">
         <h3 class="text-dark my-3">List of Contacts</h3>
         <div class="card shadow">
-          <div class="card-header py-3">
+          <div class="card-header py-3 d-flex justify-content-start">
             <p class="text-primary m-0 font-weight-bold">Contacts</p>
+            <p class="text-primary m-0 font-weight-bold ml-2 d-md-none d-block">
+              <router-link :to="{ name: 'ContactCreate' }">
+                Add New Contact
+              </router-link>
+            </p>
           </div>
           <div class="card-body">
             <div class="row">

@@ -136,9 +136,12 @@
                   <button class="btn btn-primary" @click="createContact">
                     Save
                   </button>
-                  <button type="reset" class="btn btn-danger ml-4">
+                  <router-link
+                    :to="{ name: 'ContactList' }"
+                    class="btn btn-danger ml-4"
+                  >
                     Cancel
-                  </button>
+                  </router-link>
                 </div>
               </div>
             </div>
